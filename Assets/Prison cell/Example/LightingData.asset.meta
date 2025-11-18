@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ec95171366c74cc4a8d0c46f0734596a
+timeCreated: 1488472449
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 84470
+  packageName: Prison cell
+  packageVersion: 1.0
+  assetPath: Assets/Prison cell/Example/LightingData.asset
+  uploadId: 165354
