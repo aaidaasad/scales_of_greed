@@ -130,6 +130,7 @@ MonoBehaviour:
   waypoints: []
   moveSpeed: 3
   reachThreshold: 0.1
+  damageToBase: 1
 --- !u!114 &214884040795026322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 10
+  gemPickupPrefab: {fileID: 3882592113134998967, guid: ecb8c46429549ea4dae81511369025de, type: 3}
+  gemDropChance: 0.7
+  minGemAmount: 1
+  maxGemAmount: 3
+  gemDropRadius: 1
