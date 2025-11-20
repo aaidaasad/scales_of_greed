@@ -131,3 +131,4 @@ MonoBehaviour:
   moveToPlayerSpeed: 15
   collectHeightOffset: 1
   collectAcceleration: 3
+  pickupDelay: 0.5

@@ -112,13 +112,14 @@ MonoBehaviour:
   maxHits: 3
   gemPickupPrefab: {fileID: 0}
   gemSpawnPoint: {fileID: 8233816282746651778}
+  hitDelay: 0.45
   shakeDuration: 0.2
   shakeStrength: 0.3
   flashCount: 1
   flashInterval: 0.05
-  gemDropRadius: 2
-  gemPopDuration: 0.3
-  gemPopHeight: 0.6
+  gemDropRadius: 3
+  gemPopDuration: 0.4
+  gemPopHeight: 1
 --- !u!65 &1008690661125766922
 BoxCollider:
   m_ObjectHideFlags: 0
