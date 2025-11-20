@@ -10,17 +10,20 @@ public class GemPickup : MonoBehaviour
     public float moveToPlayerSpeed = 10f;
     public float collectHeightOffset = 1f;
     public float collectAcceleration = 3f;
+    public float pickupDelay = 0.5f;
 
     Transform target;
     Vector3 startPosition;
     bool isCollecting;
     float timeOffset;
     float collectProgress;
+    float spawnTime;
 
     void Start()
     {
         startPosition = transform.position;
         timeOffset = Random.value * 10f;
+        spawnTime = Time.time;
     }
 
     void Update()
@@ -62,9 +65,10 @@ public class GemPickup : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void TryCollect(Collider other)
     {
         if (isCollecting) return;
+        if (Time.time - spawnTime < pickupDelay) return;
 
         PlayerController player = other.GetComponent<PlayerController>();
         if (player != null)
@@ -79,5 +83,15 @@ public class GemPickup : MonoBehaviour
                 col.enabled = false;
             }
         }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        TryCollect(other);
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        TryCollect(other);
     }
 }

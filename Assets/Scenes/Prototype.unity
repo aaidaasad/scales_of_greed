@@ -2497,6 +2497,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2448534534307485309, guid: 075122e1cbefefc46adda1e7903225f1, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3745973946537500338, guid: 075122e1cbefefc46adda1e7903225f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.72
@@ -2732,6 +2736,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4414792700209145859, guid: aa534235746c9764f85bc17557ddb333, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1944195933}
+    - target: {fileID: 4414792700209145859, guid: aa534235746c9764f85bc17557ddb333, type: 3}
+      propertyPath: forwardCheckDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414792700209145859, guid: aa534235746c9764f85bc17557ddb333, type: 3}
+      propertyPath: forwardCheckLayerMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 4964590919581217101, guid: aa534235746c9764f85bc17557ddb333, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2741,6 +2757,72 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa534235746c9764f85bc17557ddb333, type: 3}
+--- !u!1 &6990316755346077639 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3882592113134998967, guid: ecb8c46429549ea4dae81511369025de, type: 3}
+  m_PrefabInstance: {fileID: 4771587137940225287}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7138296977095628623
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5195961214701042314, guid: ef5488a4bfb875048a2b38fcf379f66a, type: 3}
+      propertyPath: gemPickupPrefab
+      value: 
+      objectReference: {fileID: 6990316755346077639}
+    - target: {fileID: 8233816282746651778, guid: ef5488a4bfb875048a2b38fcf379f66a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.3691964
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233816282746651778, guid: ef5488a4bfb875048a2b38fcf379f66a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0000009536743
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233816282746651778, guid: ef5488a4bfb875048a2b38fcf379f66a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.3439436
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233816282746651778, guid: ef5488a4bfb875048a2b38fcf379f66a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233816282746651778, guid: ef5488a4bfb875048a2b38fcf379f66a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233816282746651778, guid: ef5488a4bfb875048a2b38fcf379f66a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233816282746651778, guid: ef5488a4bfb875048a2b38fcf379f66a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233816282746651778, guid: ef5488a4bfb875048a2b38fcf379f66a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233816282746651778, guid: ef5488a4bfb875048a2b38fcf379f66a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233816282746651778, guid: ef5488a4bfb875048a2b38fcf379f66a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8723389895864835640, guid: ef5488a4bfb875048a2b38fcf379f66a, type: 3}
+      propertyPath: m_Name
+      value: Ore
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ef5488a4bfb875048a2b38fcf379f66a, type: 3}
 --- !u!1001 &7242725993111417594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2848,3 +2930,4 @@ SceneRoots:
   - {fileID: 1566650043}
   - {fileID: 1875209468}
   - {fileID: 4771587137940225287}
+  - {fileID: 7138296977095628623}

@@ -155,6 +155,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
   gravity: -9.81
+  mainCamera: {fileID: 0}
+  forwardCheckDistance: 3
+  forwardCheckLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &1821266368717903936
 MonoBehaviour:
   m_ObjectHideFlags: 0

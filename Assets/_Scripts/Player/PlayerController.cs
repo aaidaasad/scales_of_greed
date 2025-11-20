@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;  
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -7,49 +7,117 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float gravity = -9.81f;
 
-    private CharacterController controller;
-    private Vector3 moveInput;  // 来自输入系统的移动向量
-    private Vector3 velocity;   // 用来做重力
+    public Camera mainCamera;
+    public float forwardCheckDistance = 2f;
+    public LayerMask forwardCheckLayerMask = ~0;
 
-    private void Awake()
+    CharacterController controller;
+    Vector3 moveInput;
+    Vector3 velocity;
+    GameObject forwardTarget;
+
+    public GameObject ForwardTarget => forwardTarget;
+
+    void Awake()
     {
         controller = GetComponent<CharacterController>();
+
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+        }
     }
 
-    private void Update()
+    void Update()
     {
-        // 根据输入移动（世界坐标系的 XZ 平面）
         Vector3 move = new Vector3(moveInput.x, 0f, moveInput.z);
-
-        // 防止斜向移动比直线快
         if (move.sqrMagnitude > 1f)
+        {
             move = move.normalized;
+        }
 
         controller.Move(move * moveSpeed * Time.deltaTime);
 
-        // 简单重力
-        if (controller.isGrounded && velocity.y < 0)
+        if (controller.isGrounded && velocity.y < 0f)
         {
-            velocity.y = -2f;
+            velocity.y = -1f;
         }
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        // 让角色面向移动方向（可选）
-        if (move.sqrMagnitude > 0.01f)
+        UpdateRotationToMouse();
+        UpdateForwardCheck();
+        HandleInteractionInput();
+    }
+
+    void UpdateRotationToMouse()
+    {
+        if (mainCamera == null) return;
+        if (Mouse.current == null) return;
+
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+        Ray ray = mainCamera.ScreenPointToRay(mousePos);
+
+        float planeY = transform.position.y;
+        if (Mathf.Abs(ray.direction.y) < 0.0001f) return;
+
+        float t = (planeY - ray.origin.y) / ray.direction.y;
+        if (t <= 0f) return;
+
+        Vector3 hitPoint = ray.origin + ray.direction * t;
+        Vector3 lookDir = hitPoint - transform.position;
+        lookDir.y = 0f;
+
+        if (lookDir.sqrMagnitude > 0.0001f)
         {
-            transform.rotation = Quaternion.LookRotation(move);
+            transform.rotation = Quaternion.LookRotation(lookDir);
         }
     }
 
-    // ⚠️ 注意：函数名必须叫 OnMove，和 PlayerInput 的 "Move" 动作对得上
-    // Behavior = Send Messages 时，Input System 会自动调用它
-    private void OnMove(InputValue value)
+    void UpdateForwardCheck()
     {
-        // Move 是一个 Vector2，x=左右，y=上下
+        Vector3 origin;
+        if (controller != null)
+        {
+            origin = controller.bounds.center;
+        }
+        else
+        {
+            origin = transform.position + Vector3.up;
+        }
+
+        Vector3 dir = transform.forward;
+
+        RaycastHit hit;
+        if (Physics.Raycast(origin, dir, out hit, forwardCheckDistance, forwardCheckLayerMask, QueryTriggerInteraction.Ignore))
+        {
+            forwardTarget = hit.collider.gameObject;
+        }
+        else
+        {
+            forwardTarget = null;
+        }
+
+        Debug.DrawRay(origin, dir * forwardCheckDistance, forwardTarget != null ? Color.green : Color.red);
+    }
+
+    void HandleInteractionInput()
+    {
+        if (Mouse.current == null) return;
+        if (!Mouse.current.leftButton.wasPressedThisFrame) return;
+        if (forwardTarget == null) return;
+
+        OreNode ore = forwardTarget.GetComponent<OreNode>();
+        if (ore != null)
+        {
+            ore.Mine();
+        }
+    }
+
+    void OnMove(InputValue value)
+    {
         Vector2 input = value.Get<Vector2>();
-        // 转成 3D 的 XZ 平面
         moveInput = new Vector3(input.x, 0f, input.y);
     }
 }
