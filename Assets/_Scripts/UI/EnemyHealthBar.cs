@@ -3,24 +3,42 @@ using UnityEngine.UI;
 
 public class EnemyHealthBar : MonoBehaviour
 {
-    public EnemyHealth target;     // 血条跟随哪个敌人
-    public Image fillImage;        // 红条
-    public Vector3 offset = new Vector3(0, 2f, 0); // 血条高度偏移
+    public EnemyHealth target;
+    public Image fillImage;
+    public Vector3 offset = new Vector3(0, 2f, 0);
 
-    private Camera cam;
+    Camera cam;
 
-    private void Start()
+    void Awake()
     {
         cam = Camera.main;
+    }
 
-        // 监听敌人血量变化
+    void Start()
+    {
         if (target != null)
         {
+            // 订阅事件
             target.OnHealthChanged += UpdateHealthBar;
+            // 立刻初始化一次，避免一开始是空的
+            UpdateHealthBar(targetMax(), targetMax());
         }
     }
 
-    private void LateUpdate()
+    void OnDisable()
+    {
+        if (target != null)
+        {
+            target.OnHealthChanged -= UpdateHealthBar;
+        }
+    }
+
+    float targetMax()
+    {
+        return target != null ? target.maxHealth : 1f;
+    }
+
+    void LateUpdate()
     {
         if (target == null)
         {
@@ -28,16 +46,28 @@ public class EnemyHealthBar : MonoBehaviour
             return;
         }
 
-        // 血条跟随敌人头顶
+        if (cam == null)
+            cam = Camera.main;
+
+        // 跟随敌人头顶
         transform.position = target.transform.position + offset;
 
-        // UI 永远面朝相机
-        transform.LookAt(transform.position + cam.transform.forward);
+        // 永远朝向相机
+        var forward = cam.transform.rotation * Vector3.forward;
+        transform.rotation = Quaternion.LookRotation(forward);
     }
 
     private void UpdateHealthBar(float current, float max)
     {
-        float f = current / max;
+        if (max <= 0f)
+        {
+            // max 异常时，直接当作没血了，避免除 0
+            fillImage.fillAmount = 0f;
+            return;
+        }
+
+        float f = Mathf.Clamp01(current / max);
         fillImage.fillAmount = f;
     }
+
 }

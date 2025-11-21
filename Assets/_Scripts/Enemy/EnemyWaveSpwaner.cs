@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class EnemyWaveSpawner : MonoBehaviour
@@ -44,22 +44,28 @@ public class EnemyWaveSpawner : MonoBehaviour
 
     public void StartWaves()
     {
-        if (IsSpawning) return;
-        StartCoroutine(SpawnAllWaves());
+        if (!IsSpawning && waves != null && waves.Length > 0)
+        {
+            StartCoroutine(SpawnAllWaves());
+        }
     }
 
     IEnumerator SpawnAllWaves()
     {
         IsSpawning = true;
-        yield return new WaitForSeconds(firstWaveDelay);
+
+        if (firstWaveDelay > 0f)
+            yield return new WaitForSeconds(firstWaveDelay);
 
         for (int i = 0; i < waves.Length; i++)
         {
             CurrentWaveIndex = i;
             EnemyWave wave = waves[i];
-            yield return StartCoroutine(SpawnWave(wave));
 
-            if (wave.timeBeforeNextWave > 0f && i < waves.Length - 1)
+            if (wave != null)
+                yield return StartCoroutine(SpawnWave(wave));
+
+            if (wave != null && wave.timeBeforeNextWave > 0f && i < waves.Length - 1)
             {
                 yield return new WaitForSeconds(wave.timeBeforeNextWave);
             }
@@ -70,12 +76,14 @@ public class EnemyWaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave(EnemyWave wave)
     {
-        if (wave == null || wave.groups == null) yield break;
+        if (wave == null || wave.groups == null || wave.groups.Length == 0)
+            yield break;
 
         for (int i = 0; i < wave.groups.Length; i++)
         {
             EnemyGroup group = wave.groups[i];
-            if (group == null || group.enemyPrefab == null || group.count <= 0) continue;
+            if (group == null || group.enemyPrefab == null || group.count <= 0)
+                continue;
 
             if (group.startDelay > 0f)
                 yield return new WaitForSeconds(group.startDelay);
@@ -103,7 +111,9 @@ public class EnemyWaveSpawner : MonoBehaviour
             GameObject bar = Instantiate(healthBarPrefab);
             EnemyHealthBar hb = bar.GetComponent<EnemyHealthBar>();
             if (hb != null)
+            {
                 hb.target = health;
+            }
         }
 
         if (mover != null)
@@ -111,13 +121,22 @@ public class EnemyWaveSpawner : MonoBehaviour
             if (group.waypoints != null && group.waypoints.Length > 0)
                 mover.waypoints = group.waypoints;
 
-            if (wave.speedMultiplier != 1f)
+            if (wave != null && wave.speedMultiplier != 1f)
                 mover.moveSpeed *= wave.speedMultiplier;
         }
 
-        if (health != null && wave.healthMultiplier != 1f)
+        if (health != null)
         {
-            health.maxHealth *= wave.healthMultiplier;
+            float multiplier = wave != null ? wave.healthMultiplier : 1f;
+
+            if (!Mathf.Approximately(multiplier, 1f))
+            {
+                multiplier = Mathf.Max(multiplier, 0.01f);
+                float newMax = health.maxHealth * multiplier;
+                if (newMax < 1f) newMax = 1f;
+
+                health.ResetHealth(newMax);
+            }
         }
     }
 }
