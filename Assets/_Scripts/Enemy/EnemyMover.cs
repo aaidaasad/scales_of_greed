@@ -14,6 +14,7 @@ public class EnemyMover : MonoBehaviour
 
     float slowMultiplier = 1f;
     float slowTimer = 0f;
+    float paralyzeTimer = 0f;
 
     Renderer[] renderers;
     Material[][] originalMaterials;
@@ -39,6 +40,16 @@ public class EnemyMover : MonoBehaviour
 
     void Update()
     {
+        if (paralyzeTimer > 0f)
+        {
+            paralyzeTimer -= Time.deltaTime;
+            if (paralyzeTimer <= 0f)
+            {
+                // 麻痹结束后，如果没有减速，就恢复
+                slowMultiplier = 1f;
+            }
+        }
+
         UpdateSlow();
 
         if (waypoints == null || waypoints.Length == 0)
@@ -84,6 +95,17 @@ public class EnemyMover : MonoBehaviour
                 RemoveOverlay();
             }
         }
+    }
+    public void ApplyParalyze(float duration)
+    {
+        if (duration <= 0f) return;
+
+        // 直接覆盖：雷电是一种更强控制
+        paralyzeTimer = duration;
+
+        // 速度直接锁成 0，用 slowMultiplier = 0 模拟
+        slowMultiplier = 0f;
+        slowTimer = duration;
     }
 
     public void ApplySlow(float factor, float duration)

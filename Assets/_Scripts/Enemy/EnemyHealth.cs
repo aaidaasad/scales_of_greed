@@ -64,4 +64,11 @@ public class EnemyHealth : MonoBehaviour
             }
         }
     }
+
+    public void ResetHealth(float newMaxHealth)
+    {
+        maxHealth = newMaxHealth;
+        currentHealth = maxHealth;
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+    }
 }

@@ -31,6 +31,31 @@ public class PlayerController : MonoBehaviour
     public string isMiningParam = "IsMining";
     public string lowerBodySpeedParam = "LowerBodySpeed";
 
+    public string drinkBoolParam = "IsDrinking";
+    public string buffTriggerParam = "Buff";
+    public string carryingUpperBoolParam = "IsCarryingUpper";
+
+    public float buffAnimDuration = 0.8f;
+
+    public float drinkMoveMultiplier = 0.2f;
+    public float buffMoveMultiplier = 0.3f;
+
+    public GameObject drinkVfxPrefab;
+    public Transform drinkVfxPoint;
+    public GameObject buffVfxPrefab;
+    public Transform buffVfxPoint;
+
+    public TrailRenderer potionTrail;
+
+    public GameObject buffSmokePrefab;
+    public Transform buffSmokePoint;
+    public float buffSmokeSpawnInterval = 0.15f;
+    public float buffSmokeLifetime = 0.8f;
+
+    LightningPotion lightningBuff;
+    float lightningBuffTime;
+
+
     CharacterController controller;
     Vector3 moveInput;
     Vector3 velocity;
@@ -40,12 +65,28 @@ public class PlayerController : MonoBehaviour
     int rightHash;
     int isMiningHash;
     int lowerBodySpeedHash;
+    int drinkBoolHash;
+    int buffTriggerHash;
+    int carryingUpperBoolHash;
 
     bool isMining;
     float miningAfterTimer;
 
     bool isCarrying;
     Carryable carriedItem;
+
+    Potion carriedPotion;
+    float potionDrinkTimer;
+
+    bool hasPotionBuff;
+    float potionBuffTimer;
+    float potionBuffMultiplier = 1f;
+
+    bool isDrinkingHold;
+    bool isBuffAnimating;
+
+    GameObject currentDrinkVfx;
+    float buffSmokeTimer;
 
     void Awake()
     {
@@ -61,6 +102,12 @@ public class PlayerController : MonoBehaviour
         rightHash = Animator.StringToHash(rightParam);
         isMiningHash = Animator.StringToHash(isMiningParam);
         lowerBodySpeedHash = Animator.StringToHash(lowerBodySpeedParam);
+        drinkBoolHash = Animator.StringToHash(drinkBoolParam);
+        buffTriggerHash = Animator.StringToHash(buffTriggerParam);
+        carryingUpperBoolHash = Animator.StringToHash(carryingUpperBoolParam);
+
+        SetPotionTrail(false);
+        buffSmokeTimer = 0f;
     }
 
     void Update()
@@ -71,10 +118,52 @@ public class PlayerController : MonoBehaviour
             if (miningAfterTimer < 0f) miningAfterTimer = 0f;
         }
 
+        if (potionBuffTimer > 0f)
+        {
+            potionBuffTimer -= Time.deltaTime;
+            if (potionBuffTimer <= 0f && hasPotionBuff)
+            {
+                potionBuffTimer = 0f;
+                hasPotionBuff = false;
+                potionBuffMultiplier = 1f;
+                SetPotionTrail(false);
+            }
+        }
+
+        if (hasPotionBuff && buffSmokePrefab != null)
+        {
+            buffSmokeTimer -= Time.deltaTime;
+            if (buffSmokeTimer <= 0f)
+            {
+                buffSmokeTimer = buffSmokeSpawnInterval;
+                SpawnBuffSmokePuff();
+            }
+        }
+
         Vector3 move = new Vector3(moveInput.x, 0f, moveInput.z);
         if (move.sqrMagnitude > 1f) move.Normalize();
 
         float currentSpeed = moveSpeed;
+
+        // ---- 新增：雷电曲线加速 ----
+        if (hasPotionBuff && lightningBuff != null)
+        {
+            lightningBuffTime += Time.deltaTime;
+
+            float t = lightningBuffTime / lightningBuff.speedCurveDuration;
+            t = Mathf.Clamp01(t);
+
+            float curveValue = lightningBuff.speedCurve.Evaluate(t);
+
+            currentSpeed *= curveValue;
+
+            // 曲线结束 → 自动恢复普通 buff
+            if (t >= 1f)
+            {
+                lightningBuff = null; // 停用曲线
+            }
+        }
+
 
         if (isMining)
         {
@@ -87,6 +176,20 @@ public class PlayerController : MonoBehaviour
         else if (miningAfterTimer > 0f)
         {
             currentSpeed *= miningAfterMoveMultiplier;
+        }
+
+        if (hasPotionBuff)
+        {
+            currentSpeed *= potionBuffMultiplier;
+        }
+
+        if (isDrinkingHold)
+        {
+            currentSpeed *= drinkMoveMultiplier;
+        }
+        else if (isBuffAnimating)
+        {
+            currentSpeed *= buffMoveMultiplier;
         }
 
         Vector3 worldMove = move * currentSpeed;
@@ -102,6 +205,7 @@ public class PlayerController : MonoBehaviour
         UpdateForwardCheck();
         UpdateAnimator(worldMove);
         HandleInteractionInput();
+        HandlePotionDrinking();
     }
 
     void UpdateAnimator(Vector3 worldMove)
@@ -129,10 +233,14 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.SetFloat(lowerBodySpeedHash, animSpeed);
+
+        bool upperCarry = isCarrying && !isDrinkingHold && !isBuffAnimating;
+        animator.SetBool(carryingUpperBoolHash, upperCarry);
     }
 
     void HandleInteractionInput()
     {
+        if (isBuffAnimating) return;
         if (Mouse.current == null) return;
 
         if (Mouse.current.rightButton.wasPressedThisFrame)
@@ -158,6 +266,197 @@ public class PlayerController : MonoBehaviour
         OreNode ore = forwardTarget.GetComponent<OreNode>();
         if (ore != null)
             StartCoroutine(MiningRoutine(ore));
+    }
+
+    void HandlePotionDrinking()
+    {
+        if (!isCarrying || carriedPotion == null)
+        {
+            StopDrinkState();
+            return;
+        }
+
+        if (isBuffAnimating) return;
+        if (Mouse.current == null) return;
+
+        if (Mouse.current.leftButton.isPressed)
+        {
+            if (!isDrinkingHold)
+            {
+                StartDrinkState();
+            }
+
+            potionDrinkTimer += Time.deltaTime;
+
+            if (potionDrinkTimer >= carriedPotion.drinkHoldTime && !isBuffAnimating)
+            {
+                StartCoroutine(DrinkCompleteRoutine());
+            }
+        }
+        else
+        {
+            if (isDrinkingHold)
+            {
+                StopDrinkState();
+            }
+        }
+    }
+
+    void StartDrinkState()
+    {
+        isDrinkingHold = true;
+        potionDrinkTimer = 0f;
+
+        if (animator != null)
+            animator.SetBool(drinkBoolHash, true);
+
+        if (drinkVfxPrefab != null && currentDrinkVfx == null)
+        {
+            Transform p = drinkVfxPoint != null ? drinkVfxPoint : transform;
+            currentDrinkVfx = Instantiate(drinkVfxPrefab, p.position, p.rotation, p);
+        }
+
+        if (carriedPotion != null)
+        {
+            PotionVisuals visuals = carriedPotion.GetComponent<PotionVisuals>();
+            if (visuals != null)
+                visuals.StartUse();
+        }
+
+        SetPotionTrail(true);
+    }
+
+
+    void StopDrinkState()
+    {
+        isDrinkingHold = false;
+        potionDrinkTimer = 0f;
+
+        if (animator != null)
+            animator.SetBool(drinkBoolHash, false);
+
+        if (currentDrinkVfx != null)
+        {
+            Destroy(currentDrinkVfx);
+            currentDrinkVfx = null;
+        }
+
+        if (carriedPotion != null)
+        {
+            PotionVisuals visuals = carriedPotion.GetComponent<PotionVisuals>();
+            if (visuals != null)
+                visuals.StopUse();
+        }
+
+        if (!hasPotionBuff)
+        {
+            SetPotionTrail(false);
+        }
+    }
+
+
+    IEnumerator DrinkCompleteRoutine()
+    {
+        isBuffAnimating = true;
+
+        isDrinkingHold = false;
+        potionDrinkTimer = 0f;
+
+        if (animator != null)
+            animator.SetBool(drinkBoolHash, false);
+
+        if (currentDrinkVfx != null)
+        {
+            Destroy(currentDrinkVfx);
+            currentDrinkVfx = null;
+        }
+
+        if (carriedPotion != null)
+        {
+            PotionVisuals visuals = carriedPotion.GetComponent<PotionVisuals>();
+            if (visuals != null)
+                visuals.StopUse();
+        }
+
+        if (animator != null)
+            animator.SetTrigger(buffTriggerHash);
+
+        if (buffVfxPrefab != null)
+        {
+            Transform p = buffVfxPoint != null ? buffVfxPoint : transform;
+            GameObject vfx = Instantiate(buffVfxPrefab, p.position, p.rotation, p);
+            Destroy(vfx, buffAnimDuration + 0.5f);
+        }
+
+        float t = 0f;
+        while (t < buffAnimDuration)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        ApplyPotionBuff();
+
+        if (carriedItem != null)
+            Destroy(carriedItem.gameObject);
+
+        carriedItem = null;
+        carriedPotion = null;
+        isCarrying = false;
+        isBuffAnimating = false;
+    }
+
+    void ApplyPotionBuff()
+    {
+        if (carriedPotion == null) return;
+
+        hasPotionBuff = true;
+        potionBuffTimer = carriedPotion.buffDuration;
+        potionBuffMultiplier = carriedPotion.moveSpeedMultiplier;
+
+        lightningBuff = carriedPotion as LightningPotion;
+        lightningBuffTime = 0f;
+
+        if (FloatingTextManager.Instance != null)
+        {
+            Vector3 pos = transform.position + Vector3.up * 2f;
+            FloatingTextManager.Instance.ShowText("Buff!", pos, Color.green, 1.2f);
+        }
+
+        if (FloatingTextManager.Instance != null)
+        {
+            Vector3 pos = transform.position + Vector3.up * 2f;
+            FloatingTextManager.Instance.ShowText("Potion!", pos, Color.blue, 1.2f);
+        }
+
+        SetPotionTrail(true);
+        buffSmokeTimer = 0f;
+
+     
+        LightningPotion lightning = carriedPotion as LightningPotion;
+        if (lightning != null)
+        {
+            lightning.TriggerLightning();
+        }
+    }
+
+
+    void SpawnBuffSmokePuff()
+    {
+        if (buffSmokePrefab == null) return;
+
+        Transform p = buffSmokePoint != null ? buffSmokePoint : transform;
+        Vector3 pos = p.position;
+        GameObject puff = Instantiate(buffSmokePrefab, pos, Quaternion.identity);
+
+        if (buffSmokeLifetime > 0f)
+            Destroy(puff, buffSmokeLifetime);
+    }
+
+    void SetPotionTrail(bool active)
+    {
+        if (potionTrail == null) return;
+        potionTrail.emitting = active;
     }
 
     IEnumerator MiningRoutine(OreNode ore)
@@ -190,6 +489,9 @@ public class PlayerController : MonoBehaviour
         carriedItem = item;
         isCarrying = true;
         item.OnPickup(carryPoint);
+
+        carriedPotion = item.GetComponent<Potion>();
+        potionDrinkTimer = 0f;
     }
 
     void DropCarriedItem()
@@ -200,7 +502,11 @@ public class PlayerController : MonoBehaviour
         }
 
         carriedItem = null;
+        carriedPotion = null;
         isCarrying = false;
+        potionDrinkTimer = 0f;
+
+        StopDrinkState();
     }
 
     void UpdateRotationToMouse()
