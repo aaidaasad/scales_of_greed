@@ -2,22 +2,21 @@
 
 public class Tower : MonoBehaviour
 {
-    public float range = 8f;           // 攻击范围
-    public float fireRate = 1f;        // 每秒几发子弹
-    public LayerMask enemyLayer;       // 敌人所在 Layer
+    public float range = 8f;
+    public float fireRate = 1f;
+    public LayerMask enemyLayer;
 
-    public GameObject bulletPrefab;    // 子弹预制体
-    public Transform firePoint;        // 子弹发射位置
+    public GameObject bulletPrefab;
+    public Transform firePoint;
 
-    private float fireCooldown = 0f;
+    float fireCooldown = 0f;
 
-    private void Update()
+    void Update()
     {
         fireCooldown -= Time.deltaTime;
 
         if (fireCooldown <= 0f)
         {
-            // 找一个目标
             Transform target = FindTarget();
             if (target != null)
             {
@@ -28,8 +27,7 @@ public class Tower : MonoBehaviour
         }
     }
 
-    // 在范围内找最近的敌人
-    private Transform FindTarget()
+    Transform FindTarget()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, range, enemyLayer);
         if (hits.Length == 0) return null;
@@ -50,8 +48,7 @@ public class Tower : MonoBehaviour
         return closest;
     }
 
-    // 只在水平面旋转塔身体
-    private void RotateTowards(Transform target)
+    void RotateTowards(Transform target)
     {
         Vector3 dir = target.position - transform.position;
         dir.y = 0f;
@@ -62,25 +59,23 @@ public class Tower : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, euler.y, 0f);
     }
 
-    private void Shoot(Transform target)
+    void Shoot(Transform target)
     {
         if (bulletPrefab == null || firePoint == null)
         {
-            Debug.LogWarning("Tower: bulletPrefab 或 firePoint 没设置！");
             return;
         }
 
         GameObject bulletObj = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
-        Bullet bullet = bulletObj.GetComponent<Bullet>();
-        if (bullet != null)
+        ITowerProjectile proj = bulletObj.GetComponent<ITowerProjectile>();
+        if (proj != null)
         {
-            bullet.SetTarget(target);
+            proj.SetTarget(target);
         }
     }
 
-    // Scene 视图中调试：画出攻击范围
-    private void OnDrawGizmosSelected()
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, range);

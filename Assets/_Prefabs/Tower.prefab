@@ -179,10 +179,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3c1d573789881438f3bd6dc27bfd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerConstruction
-  buildTime: 1
+  buildTime: 3
   progressFill: {fileID: 4299133635005978792}
-  builtVisualRoot: {fileID: 837968011775977052}
-  constructionVisualRoot: {fileID: 6384809588918352603}
+  progressBarRoot: {fileID: 0}
+  builtModel: {fileID: 0}
+  constructionModel: {fileID: 0}
 --- !u!1 &4677383250546112461
 GameObject:
   m_ObjectHideFlags: 0

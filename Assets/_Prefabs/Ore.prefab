@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OreNode
   maxHits: 3
-  gemPickupPrefab: {fileID: 0}
+  gemPickupPrefab: {fileID: 3882592113134998967, guid: ecb8c46429549ea4dae81511369025de, type: 3}
   gemSpawnPoint: {fileID: 8233816282746651778}
   hitDelay: 0.45
   shakeDuration: 0.2

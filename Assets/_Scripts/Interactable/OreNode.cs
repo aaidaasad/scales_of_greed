@@ -19,6 +19,8 @@ public class OreNode : MonoBehaviour
     public float gemDropRadius = 0.8f;
     public float gemPopDuration = 0.25f;
     public float gemPopHeight = 0.6f;
+    public int minGemsPerHit = 1;
+    public int maxGemsPerHit = 3;
 
     int hits;
     Vector3 originalLocalPosition;
@@ -95,24 +97,28 @@ public class OreNode : MonoBehaviour
     {
         if (gemPickupPrefab == null) return;
 
-        // 起点：矿石中部稍微偏上
-        Vector3 start = gemSpawnPoint != null
-            ? gemSpawnPoint.position
-            : transform.position + Vector3.up * 0.5f;
+        int gemCount = Random.Range(minGemsPerHit, maxGemsPerHit + 1);
 
-        // 终点：附近地面随机一点
-        Vector2 offset2D = Random.insideUnitCircle.normalized *
-                           Random.Range(gemDropRadius * 0.4f, gemDropRadius);
+        for (int i = 0; i < gemCount; i++)
+        {
+            Vector3 start = gemSpawnPoint != null
+                ? gemSpawnPoint.position
+                : transform.position + Vector3.up * 0.5f;
 
-        Vector3 end = new Vector3(
-            start.x + offset2D.x,
-            start.y,                // 落回和起点差不多高度（GemPickup 自己在上面漂浮/旋转）
-            start.z + offset2D.y
-        );
+            Vector2 offset2D = Random.insideUnitCircle.normalized *
+                               Random.Range(gemDropRadius * 0.4f, gemDropRadius);
 
-        GameObject obj = Instantiate(gemPickupPrefab, start, Quaternion.identity);
-        StartCoroutine(PopGem(obj.transform, start, end));
+            Vector3 end = new Vector3(
+                start.x + offset2D.x,
+                start.y,
+                start.z + offset2D.y
+            );
+
+            GameObject obj = Instantiate(gemPickupPrefab, start, Quaternion.identity);
+            StartCoroutine(PopGem(obj.transform, start, end));
+        }
     }
+
 
     IEnumerator PopGem(Transform gem, Vector3 start, Vector3 end)
     {

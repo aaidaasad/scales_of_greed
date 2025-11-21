@@ -137,6 +137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildSlot
   towerPrefabs:
   - {fileID: 1862629094743664522, guid: c9b261e3c774d964bb8b0bba733bcf63, type: 3}
+  - {fileID: 11132193080866123, guid: 10c86558e940ac145a1a782dc01b81f4, type: 3}
+  - {fileID: 5488402720291375625, guid: 8f74bf89724dd7248a38f0d6a9174f46, type: 3}
   buildPoint: {fileID: 8261410529313289030}
 --- !u!65 &1434773291435717613
 BoxCollider:

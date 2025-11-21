@@ -128,9 +128,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMover
   waypoints: []
-  moveSpeed: 3
+  moveSpeed: 2
   reachThreshold: 0.1
   damageToBase: 1
+  slowOverlayMaterial: {fileID: 2100000, guid: 308be9e25f25fae4daa5257268563502, type: 2}
 --- !u!114 &214884040795026322
 MonoBehaviour:
   m_ObjectHideFlags: 0
