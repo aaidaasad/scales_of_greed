@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -13,6 +13,14 @@ public class TowerConstruction : MonoBehaviour
     Tower tower;
     Camera cam;
     bool isBuilt;
+
+    [Header("Floating Text")]
+    public string startText = "Start Building";
+    public string finishText = "Finish Building";
+    public Color startColor = Color.cyan;
+    public Color finishColor = Color.green;
+    public float textSize = 1.2f;
+    public float textOffsetY = 2f;
 
     public bool IsBuilt => isBuilt;
 
@@ -36,6 +44,13 @@ public class TowerConstruction : MonoBehaviour
 
     void Start()
     {
+        // ⭐ 建造开始 — 弹字
+        if (FloatingTextManager.Instance != null && !string.IsNullOrEmpty(startText))
+        {
+            Vector3 pos = transform.position + Vector3.up * textOffsetY;
+            FloatingTextManager.Instance.ShowText(startText, pos, startColor, textSize);
+        }
+
         StartCoroutine(BuildRoutine());
     }
 
@@ -59,6 +74,13 @@ public class TowerConstruction : MonoBehaviour
             if (progressFill != null)
                 progressFill.fillAmount = Mathf.Clamp01(f);
             yield return null;
+        }
+
+        // ⭐ 建造完成 — 弹字
+        if (FloatingTextManager.Instance != null && !string.IsNullOrEmpty(finishText))
+        {
+            Vector3 pos = transform.position + Vector3.up * textOffsetY;
+            FloatingTextManager.Instance.ShowText(finishText, pos, finishColor, textSize);
         }
 
         if (tower != null) tower.enabled = true;

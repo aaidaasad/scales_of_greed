@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6707856632097387327}
   - component: {fileID: 4414792700209145859}
   - component: {fileID: 1821266368717903936}
+  - component: {fileID: 7846268544431251756}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -33,6 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4134436885201766328}
+  - {fileID: 2320281162138739271}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &6707856632097387327
@@ -72,8 +74,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b140761bb016c1429d7dfb7ff23c75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
+  moveSpeed: 3
   gravity: -9.81
+  miningActiveMoveMultiplier: 0.15
+  miningAfterMoveMultiplier: 0.4
+  miningAfterDuration: 0.8
+  miningActiveAnimMultiplier: 0.15
+  miningAfterAnimMultiplier: 0.4
+  miningDuration: 0.2
+  carryingMoveMultiplier: 0.5
+  carryingAnimMultiplier: 0.8
+  carryPoint: {fileID: 2320281162138739271}
   mainCamera: {fileID: 0}
   forwardCheckDistance: 3
   forwardCheckLayerMask:
@@ -82,6 +93,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   forwardParam: Forward
   rightParam: Right
+  isMiningParam: IsMining
+  lowerBodySpeedParam: LowerBodySpeed
 --- !u!114 &1821266368717903936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +125,60 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!136 &7846268544431251756
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4964590919581217101}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!1 &9053293695523957771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2320281162138739271}
+  m_Layer: 0
+  m_Name: CarryPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2320281162138739271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9053293695523957771}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.83, z: 1.49}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2821293788649014958}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4533648233762922579
 PrefabInstance:
   m_ObjectHideFlags: 0

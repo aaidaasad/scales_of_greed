@@ -15,6 +15,8 @@ public class EnemyHealth : MonoBehaviour
     public int maxGemAmount = 3;
     public float gemDropRadius = 0.5f;
 
+    public float Current => currentHealth;   // 新增
+
     void Awake()
     {
         currentHealth = maxHealth;

@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
 
     public float miningDuration = 0.7f;
 
+    public float carryingMoveMultiplier = 0.5f;
+    public float carryingAnimMultiplier = 0.8f;
+    public Transform carryPoint;
+
     public Camera mainCamera;
     public float forwardCheckDistance = 2f;
     public LayerMask forwardCheckLayerMask = ~0;
@@ -40,6 +44,9 @@ public class PlayerController : MonoBehaviour
     bool isMining;
     float miningAfterTimer;
 
+    bool isCarrying;
+    Carryable carriedItem;
+
     void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -58,13 +65,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (miningAfterTimer > 0)
+        if (miningAfterTimer > 0f)
         {
             miningAfterTimer -= Time.deltaTime;
-            if (miningAfterTimer < 0) miningAfterTimer = 0;
+            if (miningAfterTimer < 0f) miningAfterTimer = 0f;
         }
 
-        Vector3 move = new Vector3(moveInput.x, 0, moveInput.z);
+        Vector3 move = new Vector3(moveInput.x, 0f, moveInput.z);
         if (move.sqrMagnitude > 1f) move.Normalize();
 
         float currentSpeed = moveSpeed;
@@ -73,7 +80,11 @@ public class PlayerController : MonoBehaviour
         {
             currentSpeed *= miningActiveMoveMultiplier;
         }
-        else if (miningAfterTimer > 0)
+        else if (isCarrying)
+        {
+            currentSpeed *= carryingMoveMultiplier;
+        }
+        else if (miningAfterTimer > 0f)
         {
             currentSpeed *= miningAfterMoveMultiplier;
         }
@@ -81,7 +92,7 @@ public class PlayerController : MonoBehaviour
         Vector3 worldMove = move * currentSpeed;
         controller.Move(worldMove * Time.deltaTime);
 
-        if (controller.isGrounded && velocity.y < 0)
+        if (controller.isGrounded && velocity.y < 0f)
             velocity.y = -1f;
 
         velocity.y += gravity * Time.deltaTime;
@@ -95,6 +106,8 @@ public class PlayerController : MonoBehaviour
 
     void UpdateAnimator(Vector3 worldMove)
     {
+        if (animator == null) return;
+
         Vector3 local = transform.InverseTransformDirection(worldMove);
 
         animator.SetFloat(forwardHash, local.z, 0.1f, Time.deltaTime);
@@ -106,7 +119,11 @@ public class PlayerController : MonoBehaviour
         {
             animSpeed = miningActiveAnimMultiplier;
         }
-        else if (miningAfterTimer > 0)
+        else if (isCarrying)
+        {
+            animSpeed = carryingAnimMultiplier;
+        }
+        else if (miningAfterTimer > 0f)
         {
             animSpeed = miningAfterAnimMultiplier;
         }
@@ -116,9 +133,27 @@ public class PlayerController : MonoBehaviour
 
     void HandleInteractionInput()
     {
+        if (Mouse.current == null) return;
+
+        if (Mouse.current.rightButton.wasPressedThisFrame)
+        {
+            if (isCarrying)
+                DropCarriedItem();
+        }
+
         if (!Mouse.current.leftButton.wasPressedThisFrame) return;
-        if (forwardTarget == null) return;
         if (isMining) return;
+
+        if (isCarrying) return;
+
+        if (forwardTarget == null) return;
+
+        Carryable carryable = forwardTarget.GetComponent<Carryable>();
+        if (carryable != null)
+        {
+            PickupItem(carryable);
+            return;
+        }
 
         OreNode ore = forwardTarget.GetComponent<OreNode>();
         if (ore != null)
@@ -128,36 +163,62 @@ public class PlayerController : MonoBehaviour
     IEnumerator MiningRoutine(OreNode ore)
     {
         isMining = true;
-        animator.SetBool(isMiningHash, true);
+        if (animator != null)
+            animator.SetBool(isMiningHash, true);
 
         if (ore != null)
             ore.Mine();
 
-        float t = 0;
+        float t = 0f;
         while (t < miningDuration)
         {
             t += Time.deltaTime;
             yield return null;
         }
 
-        animator.SetBool(isMiningHash, false);
+        if (animator != null)
+            animator.SetBool(isMiningHash, false);
         isMining = false;
         miningAfterTimer = miningAfterDuration;
     }
 
+    void PickupItem(Carryable item)
+    {
+        if (item == null) return;
+        if (carryPoint == null) return;
+
+        carriedItem = item;
+        isCarrying = true;
+        item.OnPickup(carryPoint);
+    }
+
+    void DropCarriedItem()
+    {
+        if (carriedItem != null)
+        {
+            carriedItem.OnDrop();
+        }
+
+        carriedItem = null;
+        isCarrying = false;
+    }
+
     void UpdateRotationToMouse()
     {
+        if (mainCamera == null) return;
+        if (Mouse.current == null) return;
+
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Ray ray = mainCamera.ScreenPointToRay(mousePos);
 
         float planeY = transform.position.y;
         float t = (planeY - ray.origin.y) / ray.direction.y;
 
-        if (t > 0)
+        if (t > 0f)
         {
             Vector3 hitPoint = ray.origin + ray.direction * t;
             Vector3 look = hitPoint - transform.position;
-            look.y = 0;
+            look.y = 0f;
 
             if (look.sqrMagnitude > 0.001f)
                 transform.rotation = Quaternion.LookRotation(look);
@@ -166,6 +227,8 @@ public class PlayerController : MonoBehaviour
 
     void UpdateForwardCheck()
     {
+        if (controller == null) return;
+
         Vector3 origin = controller.bounds.center;
 
         if (Physics.Raycast(origin, transform.forward, out RaycastHit hit, forwardCheckDistance, forwardCheckLayerMask))
@@ -179,6 +242,6 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue value)
     {
         Vector2 input = value.Get<Vector2>();
-        moveInput = new Vector3(input.x, 0, input.y);
+        moveInput = new Vector3(input.x, 0f, input.y);
     }
 }
