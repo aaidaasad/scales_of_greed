@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMover
   waypoints: []
-  moveSpeed: 5
+  moveSpeed: 4.5
   reachThreshold: 0.1
   damageToBase: 1
   slowOverlayMaterial: {fileID: 2100000, guid: 308be9e25f25fae4daa5257268563502, type: 2}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8baeb72446130874baeaec700d80ae84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 45
+  maxHealth: 40
   gemPickupPrefab: {fileID: 3882592113134998967, guid: ecb8c46429549ea4dae81511369025de, type: 3}
   gemDropChance: 1
   minGemAmount: 3

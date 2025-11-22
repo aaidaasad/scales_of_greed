@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public GameObject startPanel;
 
     [Header("References")]
     public BaseHealth baseHealth;
@@ -11,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverPanel;
     public GameObject winPanel;
+
+
 
     [Header("Gem Settings")]
     public int startGems = 100;
@@ -51,21 +55,30 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Time.timeScale = 1f;
+        // 1. 先暂停游戏
+        Time.timeScale = 0f;
 
+        // 2. 显示开场说明面板
+        if (startPanel != null)
+            startPanel.SetActive(true);
+
+        // 3. 找基地 & 绑定事件
         if (baseHealth == null)
             baseHealth = FindObjectOfType<BaseHealth>();
         if (baseHealth != null)
             baseHealth.OnBaseDestroyed += HandleBaseDestroyed;
 
+        // 4. 找刷怪器 & 绑定事件
         if (waveSpawner == null)
             waveSpawner = FindObjectOfType<EnemyWaveSpawner>();
         if (waveSpawner != null)
             waveSpawner.OnWavesClearedChanged += HandleWavesCleared;
 
+        // 5. 初始化宝石
         currentGems = startGems;
         OnGemChanged?.Invoke(currentGems);
 
+        // 6. 隐藏胜利/失败面板
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
         if (winPanel != null)
@@ -190,4 +203,24 @@ public class GameManager : MonoBehaviour
 
         CheckAllWinConditions();   // 花钱不会赢，但加钱可能赢
     }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void StartGame()
+    {
+        if (startPanel != null)
+            startPanel.SetActive(false);
+
+        Time.timeScale = 1f;
+
+        // 如果你是依靠 waveSpawner 自动开局，这里不必管
+        // 如果你要求玩家按开始后再刷怪，则可以这样：
+        if (waveSpawner != null && !waveSpawner.IsSpawning)
+            waveSpawner.StartWaves();
+    }
+
 }

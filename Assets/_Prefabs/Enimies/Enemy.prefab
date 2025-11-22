@@ -153,7 +153,7 @@ MonoBehaviour:
   maxGemAmount: 2
   gemDropRadius: 1
   dragonEggPrefab: {fileID: 5815221422166073221, guid: a72d76a4be11249498d2e05fb1989786, type: 3}
-  dragonEggDropChance: 0.015
+  dragonEggDropChance: 0.01
   dragonEggDropRadius: 3
   dragonEggPopDuration: 0.35
   dragonEggPopHeight: 2

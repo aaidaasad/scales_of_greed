@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3c1d573789881438f3bd6dc27bfd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerConstruction
-  buildTime: 30
+  buildTime: 8
   progressFill: {fileID: 2677599062082581235}
   progressBarRoot: {fileID: 3098416344849131748}
   builtModel: {fileID: 497466769616356719}

@@ -129,7 +129,7 @@ MonoBehaviour:
   lifeTime: 10
   slowFactor: 0.3
   slowDuration: 3
-  stacksToFreeze: 3
-  freezeDuration: 1
+  stacksToFreeze: 2
+  freezeDuration: 0.5
   iceVFX: {fileID: 5112403345868107898, guid: 6f34ef0d986e9db4199cf75805f79753, type: 3}
   freezeVFX: {fileID: 7997762665847456352, guid: 11df333f8d1196041adf820e4ba93429, type: 3}

@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3c1d573789881438f3bd6dc27bfd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerConstruction
-  buildTime: 25
+  buildTime: 8
   progressFill: {fileID: 8261717757853867896}
   progressBarRoot: {fileID: 5327556507132527638}
   builtModel: {fileID: 951137305130460791}
@@ -493,7 +493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerUpgrade
   nextLevelPrefab: {fileID: 5488402720291375625, guid: d2139f85b71184f41bb32dab8531a634, type: 3}
-  upgradeCost: 185
+  upgradeCost: 145
   sellRefund: 25
 --- !u!114 &4606003291570082787
 MonoBehaviour:

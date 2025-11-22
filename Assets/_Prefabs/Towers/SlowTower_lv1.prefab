@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerUpgrade
   nextLevelPrefab: {fileID: 11132193080866123, guid: 955ad03566ff5bc4b93cbfc4596f99c0, type: 3}
-  upgradeCost: 55
+  upgradeCost: 45
   sellRefund: 15
 --- !u!114 &4458758341805242678
 MonoBehaviour:

@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
   range: 8
-  fireRate: 0.4
+  fireRate: 0.6
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3c1d573789881438f3bd6dc27bfd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerConstruction
-  buildTime: 35
+  buildTime: 8
   progressFill: {fileID: 8261717757853867896}
   progressBarRoot: {fileID: 5327556507132527638}
   builtModel: {fileID: 951137305130460791}
