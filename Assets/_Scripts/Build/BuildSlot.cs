@@ -10,6 +10,7 @@ public class BuildSlot : MonoBehaviour
 
     public bool HasBuilt => hasBuilt;
     public GameObject CurrentTower => currentTower;
+    public Transform decorRoot;
 
     public void BuildTower(int index)
     {
@@ -21,7 +22,11 @@ public class BuildSlot : MonoBehaviour
         Transform point = buildPoint != null ? buildPoint : transform;
         currentTower = Instantiate(towerPrefabs[index], point.position, point.rotation);
         hasBuilt = true;
+
+        if (decorRoot != null)
+            decorRoot.gameObject.SetActive(false);
     }
+
 
     public void UpgradeTower()
     {
@@ -67,7 +72,11 @@ public class BuildSlot : MonoBehaviour
 
         currentTower = null;
         hasBuilt = false;
+
+        if (decorRoot != null)
+            decorRoot.gameObject.SetActive(true);
     }
+
 
     private void OnTriggerEnter(Collider other)
     {

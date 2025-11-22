@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 7e8b4e3b44a09a140bbbd0ee7fe083c7
+timeCreated: 1518120831
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 111233
+  packageName: MedieVox Nature FREE
+  packageVersion: 1.0
+  assetPath: Assets/MedieVox/MedieVox Nature/Prefabs/Rocks/Rock_1.prefab
+  uploadId: 231862

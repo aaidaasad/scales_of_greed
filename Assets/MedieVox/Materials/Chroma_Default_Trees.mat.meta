@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 2234001a9dd92234e823d96d85c35c94
+timeCreated: 1518037566
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 111233
+  packageName: MedieVox Nature FREE
+  packageVersion: 1.0
+  assetPath: Assets/MedieVox/Materials/Chroma_Default_Trees.mat
+  uploadId: 231862

@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7eab881f40a67a45b9940c7de79a81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlowBullet
-  speed: 8
+  speed: 10
   damage: 1
   lifeTime: 10
   slowFactor: 0.3

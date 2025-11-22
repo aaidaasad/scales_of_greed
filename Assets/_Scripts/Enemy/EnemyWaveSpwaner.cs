@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using System;
 
 public class EnemyWaveSpawner : MonoBehaviour
 {
@@ -34,6 +35,12 @@ public class EnemyWaveSpawner : MonoBehaviour
     public int CurrentWaveIndex { get; private set; } = -1;
     public bool IsSpawning { get; private set; }
 
+    public int WavesCleared { get; private set; }  // 已经打完的波数
+    public Action<int> OnWavesClearedChanged;      // UI 回调
+
+    [Header("Loop Settings")]
+    public bool loopLastWave = true;   // 无限循环最后一波
+
     void Start()
     {
         if (autoStart && waves != null && waves.Length > 0)
@@ -57,18 +64,42 @@ public class EnemyWaveSpawner : MonoBehaviour
         if (firstWaveDelay > 0f)
             yield return new WaitForSeconds(firstWaveDelay);
 
-        for (int i = 0; i < waves.Length; i++)
+        int i = 0;
+
+        while (true)
         {
-            CurrentWaveIndex = i;
-            EnemyWave wave = waves[i];
+            EnemyWave wave;
+
+            if (i < waves.Length)   // 普通波次
+            {
+                CurrentWaveIndex = i;
+                wave = waves[i];
+            }
+            else                    // 无限循环
+            {
+                CurrentWaveIndex = waves.Length - 1;
+
+                if (loopLastWave)
+                {
+                    wave = waves[waves.Length - 1];
+                }
+                else
+                {
+                    break;
+                }
+            }
 
             if (wave != null)
                 yield return StartCoroutine(SpawnWave(wave));
 
-            if (wave != null && wave.timeBeforeNextWave > 0f && i < waves.Length - 1)
-            {
+            // 🟢 完整一波结束 → 波数+1（无限循环也会增加）
+            WavesCleared++;
+            OnWavesClearedChanged?.Invoke(WavesCleared);
+
+            if (wave != null && wave.timeBeforeNextWave > 0f)
                 yield return new WaitForSeconds(wave.timeBeforeNextWave);
-            }
+
+            i++;
         }
 
         IsSpawning = false;
@@ -79,9 +110,8 @@ public class EnemyWaveSpawner : MonoBehaviour
         if (wave == null || wave.groups == null || wave.groups.Length == 0)
             yield break;
 
-        for (int i = 0; i < wave.groups.Length; i++)
+        foreach (var group in wave.groups)
         {
-            EnemyGroup group = wave.groups[i];
             if (group == null || group.enemyPrefab == null || group.count <= 0)
                 continue;
 

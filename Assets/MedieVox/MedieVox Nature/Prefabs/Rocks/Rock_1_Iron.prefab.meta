@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 6ea9bf93dec528346b2bb8198fd1a26d
+timeCreated: 1518120843
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 111233
+  packageName: MedieVox Nature FREE
+  packageVersion: 1.0
+  assetPath: Assets/MedieVox/MedieVox Nature/Prefabs/Rocks/Rock_1_Iron.prefab
+  uploadId: 231862

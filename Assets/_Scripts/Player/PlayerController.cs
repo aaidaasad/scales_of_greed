@@ -256,6 +256,14 @@ public class PlayerController : MonoBehaviour
 
         if (forwardTarget == null) return;
 
+        Chest chest = forwardTarget.GetComponent<Chest>();
+        if (chest != null)
+        {
+            chest.TryOpen();
+            return;
+        }
+
+
         Carryable carryable = forwardTarget.GetComponent<Carryable>();
         if (carryable != null)
         {

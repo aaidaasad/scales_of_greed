@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3c1d573789881438f3bd6dc27bfd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerConstruction
-  buildTime: 5
+  buildTime: 16
   progressFill: {fileID: 4299133635005978792}
   progressBarRoot: {fileID: 2519903199744210920}
   builtModel: {fileID: 837968011775977052}
@@ -201,8 +201,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerInfo
   towerName: Lv.2 Aroror Tower
-  description: 
-  nextLevelDescription: 
+  description: Shoot 2 enimies at the same time.
+  nextLevelDescription: 'Next Level:
+
+    Siginificant increase firerate.'
   icon: {fileID: 0}
 --- !u!114 &5718137885043019341
 MonoBehaviour:
@@ -216,8 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8deebf2b59d1c4681c3754909b4c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MultiTargetTower
-  range: 8
-  fireRate: 1
+  range: 12
+  fireRate: 2
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64

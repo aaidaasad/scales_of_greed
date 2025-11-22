@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303aefdbb6ff8c7448cdce5579769d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
-  range: 8
+  range: 12
   fireRate: 1
   enemyLayer:
     serializedVersion: 2
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3c1d573789881438f3bd6dc27bfd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerConstruction
-  buildTime: 3
+  buildTime: 12
   progressFill: {fileID: 4299133635005978792}
   progressBarRoot: {fileID: 2519903199744210920}
   builtModel: {fileID: 837968011775977052}
@@ -205,8 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerUpgrade
   nextLevelPrefab: {fileID: 1862629094743664522, guid: 7532f3bb4ec355548b72a4d0b5c76417, type: 3}
-  upgradeCost: 50
-  sellRefund: 25
+  upgradeCost: 25
+  sellRefund: 12
 --- !u!114 &4267051480772633569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,8 +220,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerInfo
   towerName: Lv.1 Aroror Tower
-  description: 
-  nextLevelDescription: 
+  description: 'Shoot fast bullets.
+
+'
+  nextLevelDescription: 'Next Level:
+
+    Can target 2 enemies at the same time.'
   icon: {fileID: 0}
 --- !u!1 &4677383250546112461
 GameObject:

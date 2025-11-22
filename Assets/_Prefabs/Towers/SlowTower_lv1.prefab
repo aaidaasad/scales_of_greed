@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3c1d573789881438f3bd6dc27bfd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerConstruction
-  buildTime: 5
+  buildTime: 20
   progressFill: {fileID: 2677599062082581235}
   progressBarRoot: {fileID: 3098416344849131748}
   builtModel: {fileID: 497466769616356719}
@@ -94,8 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerUpgrade
   nextLevelPrefab: {fileID: 11132193080866123, guid: 955ad03566ff5bc4b93cbfc4596f99c0, type: 3}
-  upgradeCost: 50
-  sellRefund: 25
+  upgradeCost: 55
+  sellRefund: 15
 --- !u!114 &4458758341805242678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,8 +109,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerInfo
   towerName: Lv.1 Ice Tower
-  description: 
-  nextLevelDescription: 
+  description: Shoot ice bullet.
+  nextLevelDescription: 'Next level:
+
+    Siginificant increase firerate.'
   icon: {fileID: 0}
 --- !u!1 &497466769616356719
 GameObject:

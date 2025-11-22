@@ -120,6 +120,8 @@ MonoBehaviour:
   gemDropRadius: 3
   gemPopDuration: 0.4
   gemPopHeight: 1
+  minGemsPerHit: 1
+  maxGemsPerHit: 1
 --- !u!65 &1008690661125766922
 BoxCollider:
   m_ObjectHideFlags: 0
