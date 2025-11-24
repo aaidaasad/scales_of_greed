@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 661972464778232709}
   - component: {fileID: 1776355634056081884}
   - component: {fileID: 4267051480772633569}
+  - component: {fileID: 8691474096673467283}
   m_Layer: 0
   m_Name: Tower_lv1
   m_TagString: Untagged
@@ -162,8 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303aefdbb6ff8c7448cdce5579769d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
-  range: 12
-  fireRate: 1
+  range: 8
+  fireRate: 0.8
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -192,6 +193,12 @@ MonoBehaviour:
   finishColor: {r: 0, g: 1, b: 0, a: 1}
   textSize: 1.2
   textOffsetY: 2
+  startBuildVfxPrefab: {fileID: 6813416509558619124, guid: 3b7f2c753d435d647a80f1f047a113e3, type: 3}
+  startVfxPoint: {fileID: 0}
+  startVfxLifeTime: 2
+  finishBuildVfxPrefab: {fileID: 0}
+  finishVfxPoint: {fileID: 0}
+  finishVfxLifeTime: 2
 --- !u!114 &1776355634056081884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +234,22 @@ MonoBehaviour:
 
     Can target 2 enemies at the same time.'
   icon: {fileID: 0}
+--- !u!114 &8691474096673467283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862629094743664522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7425d7a0a439b60459839a991fd6fe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverInfo
+  displayName: Aroror Tower
+  description: 'lv.1
+
+'
 --- !u!1 &4677383250546112461
 GameObject:
   m_ObjectHideFlags: 0

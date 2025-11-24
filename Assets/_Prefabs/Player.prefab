@@ -35,6 +35,7 @@ Transform:
   m_Children:
   - {fileID: 4134436885201766328}
   - {fileID: 2320281162138739271}
+  - {fileID: 5000048333486138401}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &6707856632097387327
@@ -95,6 +96,21 @@ MonoBehaviour:
   rightParam: Right
   isMiningParam: IsMining
   lowerBodySpeedParam: LowerBodySpeed
+  drinkBoolParam: IsDrinking
+  buffTriggerParam: Buff
+  carryingUpperBoolParam: IsCarryingUpper
+  buffAnimDuration: 0.8
+  drinkMoveMultiplier: 0.2
+  buffMoveMultiplier: 0.3
+  drinkVfxPrefab: {fileID: 0}
+  drinkVfxPoint: {fileID: 0}
+  buffVfxPrefab: {fileID: 0}
+  buffVfxPoint: {fileID: 0}
+  potionTrail: {fileID: 0}
+  buffSmokePrefab: {fileID: 0}
+  buffSmokePoint: {fileID: 0}
+  buffSmokeSpawnInterval: 0.15
+  buffSmokeLifetime: 0.8
 --- !u!114 &1821266368717903936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +164,95 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!1 &5631872122793623195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5000048333486138401}
+  - component: {fileID: 8272099738824125316}
+  - component: {fileID: 6136314657614749518}
+  m_Layer: 0
+  m_Name: 99_Decorations_WallBanner_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5000048333486138401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5631872122793623195}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 5.38, z: 0}
+  m_LocalScale: {x: 0.68779, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2821293788649014958}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!33 &8272099738824125316
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5631872122793623195}
+  m_Mesh: {fileID: -3115080004670832777, guid: 0a3f008b7c8f235498390d0f705b7705, type: 3}
+--- !u!23 &6136314657614749518
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5631872122793623195}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 35e961cc74266f14888db69cc3403a8e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &9053293695523957771
 GameObject:
   m_ObjectHideFlags: 0

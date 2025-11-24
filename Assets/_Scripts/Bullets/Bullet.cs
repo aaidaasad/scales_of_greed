@@ -6,6 +6,10 @@ public class Bullet : MonoBehaviour, ITowerProjectile
     public float damage = 5f;
     public float lifeTime = 5f;
 
+    [Header("Impact VFX")]
+    public GameObject impactVfxPrefab;
+    public Vector3 impactOffset;
+
     Transform target;
 
     void Start()
@@ -46,12 +50,22 @@ public class Bullet : MonoBehaviour, ITowerProjectile
 
     void HitTarget()
     {
+        // ⭐ 伤害
         EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
             enemyHealth.TakeDamage(damage);
         }
 
+        // ⭐ 播放命中特效
+        if (impactVfxPrefab != null)
+        {
+            Vector3 pos = target.position + impactOffset;
+            GameObject vfx = Instantiate(impactVfxPrefab, pos, Quaternion.identity);
+            Destroy(vfx, 2f); // 让特效自动消失
+        }
+
+        // ⭐ 销毁子弹
         Destroy(gameObject);
     }
 }

@@ -124,6 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d358acadcfbb2e41816a5e1d00173b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  speed: 21
-  damage: 4
+  speed: 24
+  damage: 3
   lifeTime: 5
+  impactVfxPrefab: {fileID: 2708598583397607911, guid: 6398d43fe79ea0140913dc5530c646af, type: 3}
+  impactOffset: {x: 0, y: 0, z: 0}

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5813899774919640475}
   - component: {fileID: 245661100987489514}
   - component: {fileID: 7710880271094169574}
+  - component: {fileID: 1905288179990535763}
   m_Layer: 7
   m_Name: LightingPotion
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddebfbab364cf724aba81e27652db1bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightningPotion
-  drinkHoldTime: 1.5
+  drinkHoldTime: 0.5
   buffDuration: 1.2
   moveSpeedMultiplier: 3.5
   lightningDamage: 15
@@ -122,6 +123,23 @@ CapsuleCollider:
   m_Height: 2.0074997
   m_Direction: 1
   m_Center: {x: 0, y: -0.37115714, z: 0}
+--- !u!114 &1905288179990535763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364825690925916959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31ff07a5e0e8904ead4bc842eb1ae81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PotionVisuals
+  visualRoot: {fileID: 99226884156232254}
+  idleRotateSpeed: 90
+  useTiltAngle: 40
+  useShakeAmplitude: 3
+  useShakeFrequency: 20
 --- !u!1 &7860147601442705693
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3065406068982019178}
   - component: {fileID: 211090659226529942}
   - component: {fileID: 8104524344287558450}
+  - component: {fileID: 1150409700672333506}
   m_Layer: 0
   m_Name: Hatchery
   m_TagString: Untagged
@@ -95,6 +96,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1150409700672333506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509250185580317108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7425d7a0a439b60459839a991fd6fe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverInfo
+  displayName: Hatchery
+  description: Htaching dragon eggs.
 --- !u!1 &2010524373137257322
 GameObject:
   m_ObjectHideFlags: 0

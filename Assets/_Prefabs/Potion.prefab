@@ -153,9 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73841325c1945b447922313eb3c84927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Potion
-  drinkHoldTime: 0.5
+  drinkHoldTime: 0.35
   buffDuration: 45
-  moveSpeedMultiplier: 2
+  moveSpeedMultiplier: 1.85
 --- !u!136 &9186515769510771548
 CapsuleCollider:
   m_ObjectHideFlags: 0

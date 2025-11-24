@@ -146,18 +146,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8baeb72446130874baeaec700d80ae84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 85
+  maxHealth: 100
+  enableDamageText: 1
+  damageTextColor: {r: 1, g: 0, b: 0, a: 1}
+  damageTextSize: 1
+  damageTextHeight: 2
+  damageTextRandomRadius: 0.3
   gemPickupPrefab: {fileID: 3882592113134998967, guid: ecb8c46429549ea4dae81511369025de, type: 3}
-  gemDropChance: 0.7
+  gemDropChance: 0.65
   minGemAmount: 1
   maxGemAmount: 2
-  gemDropRadius: 1
+  gemDropRadius: 2
+  gemPopDuration: 0.35
+  gemPopHeight: 1
   dragonEggPrefab: {fileID: 5815221422166073221, guid: a72d76a4be11249498d2e05fb1989786, type: 3}
-  dragonEggDropChance: 0.01
+  dragonEggDropChance: 0.02
   dragonEggDropRadius: 3
   dragonEggPopDuration: 0.35
   dragonEggPopHeight: 2
-  dragonEggSpawnPoint: {fileID: 0}
 --- !u!114 &3315901409818035697
 MonoBehaviour:
   m_ObjectHideFlags: 0

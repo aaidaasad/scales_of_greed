@@ -412,6 +412,7 @@ GameObject:
   - component: {fileID: 1824230360799624191}
   - component: {fileID: 9179360049965581561}
   - component: {fileID: 4606003291570082787}
+  - component: {fileID: -208524206121836237}
   m_Layer: 0
   m_Name: AoeMortarTower_lv1
   m_TagString: Untagged
@@ -480,6 +481,12 @@ MonoBehaviour:
   finishColor: {r: 0, g: 1, b: 0, a: 1}
   textSize: 1.2
   textOffsetY: 2
+  startBuildVfxPrefab: {fileID: 6813416509558619124, guid: 3b7f2c753d435d647a80f1f047a113e3, type: 3}
+  startVfxPoint: {fileID: 0}
+  startVfxLifeTime: 1
+  finishBuildVfxPrefab: {fileID: 0}
+  finishVfxPoint: {fileID: 0}
+  finishVfxLifeTime: 1
 --- !u!114 &9179360049965581561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,7 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerUpgrade
   nextLevelPrefab: {fileID: 5488402720291375625, guid: dd9f84402426a5e43bab8d6425b0f931, type: 3}
-  upgradeCost: 80
+  upgradeCost: 40
   sellRefund: 25
 --- !u!114 &4606003291570082787
 MonoBehaviour:
@@ -513,6 +520,20 @@ MonoBehaviour:
 
     Make enimies burining.'
   icon: {fileID: 0}
+--- !u!114 &-208524206121836237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488402720291375625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7425d7a0a439b60459839a991fd6fe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverInfo
+  displayName: Lv1.Aoe Tower
+  description: lv.1
 --- !u!1 &6240340004110769186
 GameObject:
   m_ObjectHideFlags: 0

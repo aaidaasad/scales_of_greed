@@ -295,6 +295,7 @@ GameObject:
   - component: {fileID: 2357690049500829111}
   - component: {fileID: 5475610789369619874}
   - component: {fileID: 2153261882750031776}
+  - component: {fileID: 6617807152508753676}
   m_Layer: 0
   m_Name: AlchemyStation
   m_TagString: Untagged
@@ -367,6 +368,20 @@ MonoBehaviour:
   gemFlyHeight: 4
   gemFlyDuration: 0.6
   gemSpawnOffsetY: 1.2
+--- !u!114 &6617807152508753676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5961489299870096704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7425d7a0a439b60459839a991fd6fe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverInfo
+  displayName: AlchmyStation
+  description: Use gems to craft potion.
 --- !u!1001 &3178713686106922772
 PrefabInstance:
   m_ObjectHideFlags: 0

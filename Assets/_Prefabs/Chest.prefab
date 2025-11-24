@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.190739
+      value: 2.1907387
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}
       propertyPath: m_LocalScale.y
@@ -53,19 +53,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.190739
+      value: 2.1907387
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.14
+      value: -1.0796795
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1
+      value: -0.85403
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.67
+      value: -1.07967
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}
       propertyPath: m_LocalRotation.w
@@ -143,6 +143,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4091786224943188585}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1552521757547603519}
   m_SourcePrefab: {fileID: 100100000, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}
 --- !u!1 &4803089658306490714 stripped
 GameObject:
@@ -217,6 +220,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1552521757547603519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4803089658306490714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7425d7a0a439b60459839a991fd6fe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverInfo
+  displayName: Chest
+  description: Open me!
 --- !u!4 &5324328107061390304 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}

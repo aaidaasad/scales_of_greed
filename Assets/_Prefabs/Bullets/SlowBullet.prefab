@@ -127,6 +127,6 @@ MonoBehaviour:
   speed: 10
   damage: 1
   lifeTime: 10
-  slowFactor: 0.3
+  slowFactor: 0.5
   slowDuration: 2
   iceVFX: {fileID: 5112403345868107898, guid: 6f34ef0d986e9db4199cf75805f79753, type: 3}

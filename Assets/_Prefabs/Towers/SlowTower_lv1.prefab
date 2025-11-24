@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6418394150939768126}
   - component: {fileID: 5119605706744390732}
   - component: {fileID: 4458758341805242678}
+  - component: {fileID: 6001283198948688059}
   m_Layer: 0
   m_Name: SlowTower_lv1
   m_TagString: Untagged
@@ -70,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3c1d573789881438f3bd6dc27bfd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerConstruction
-  buildTime: 20
+  buildTime: 14
   progressFill: {fileID: 2677599062082581235}
   progressBarRoot: {fileID: 3098416344849131748}
   builtModel: {fileID: 497466769616356719}
@@ -81,6 +82,12 @@ MonoBehaviour:
   finishColor: {r: 0, g: 1, b: 0, a: 1}
   textSize: 1.2
   textOffsetY: 2
+  startBuildVfxPrefab: {fileID: 6813416509558619124, guid: 3b7f2c753d435d647a80f1f047a113e3, type: 3}
+  startVfxPoint: {fileID: 0}
+  startVfxLifeTime: 2
+  finishBuildVfxPrefab: {fileID: 0}
+  finishVfxPoint: {fileID: 0}
+  finishVfxLifeTime: 2
 --- !u!114 &5119605706744390732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerUpgrade
   nextLevelPrefab: {fileID: 11132193080866123, guid: 955ad03566ff5bc4b93cbfc4596f99c0, type: 3}
-  upgradeCost: 45
+  upgradeCost: 50
   sellRefund: 15
 --- !u!114 &4458758341805242678
 MonoBehaviour:
@@ -114,6 +121,20 @@ MonoBehaviour:
 
     Siginificant increase firerate.'
   icon: {fileID: 0}
+--- !u!114 &6001283198948688059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11132193080866123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7425d7a0a439b60459839a991fd6fe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverInfo
+  displayName: ' Ice Tower'
+  description: 'Lv.1 '
 --- !u!1 &497466769616356719
 GameObject:
   m_ObjectHideFlags: 0

@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6221beece9edb45a926adcf651ba0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BurningAoeMortarBullet
-  damage: 8
+  damage: 12
   explosionRadius: 3
   flightTime: 2
   arcHeight: 4

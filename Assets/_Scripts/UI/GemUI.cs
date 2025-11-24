@@ -27,7 +27,7 @@ public class GemUI : MonoBehaviour
     {
         if (gemText != null)
         {
-            gemText.text = "Gem: " + value.ToString();
+            gemText.text = value.ToString();
 
         }
     }

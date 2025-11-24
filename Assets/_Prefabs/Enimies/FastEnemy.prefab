@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMover
   waypoints: []
-  moveSpeed: 4.5
+  moveSpeed: 8
   reachThreshold: 0.1
   damageToBase: 1
   slowOverlayMaterial: {fileID: 2100000, guid: 308be9e25f25fae4daa5257268563502, type: 2}
@@ -123,18 +123,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8baeb72446130874baeaec700d80ae84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 40
+  maxHealth: 225
+  enableDamageText: 1
+  damageTextColor: {r: 1, g: 0, b: 0, a: 1}
+  damageTextSize: 1
+  damageTextHeight: 2
+  damageTextRandomRadius: 0.3
   gemPickupPrefab: {fileID: 3882592113134998967, guid: ecb8c46429549ea4dae81511369025de, type: 3}
   gemDropChance: 1
-  minGemAmount: 3
-  maxGemAmount: 5
-  gemDropRadius: 1
+  minGemAmount: 4
+  maxGemAmount: 6
+  gemDropRadius: 3
+  gemPopDuration: 0.35
+  gemPopHeight: 1
   dragonEggPrefab: {fileID: 3031430151092497830, guid: 41c522e3fdf56804f89cb0a662f1d5a5, type: 3}
-  dragonEggDropChance: 0.03
-  dragonEggDropRadius: 2
-  dragonEggPopDuration: 0.35
-  dragonEggPopHeight: 2
-  dragonEggSpawnPoint: {fileID: 0}
+  dragonEggDropChance: 0.04
+  dragonEggDropRadius: 4
+  dragonEggPopDuration: 1
+  dragonEggPopHeight: 3
 --- !u!114 &3315901409818035697
 MonoBehaviour:
   m_ObjectHideFlags: 0

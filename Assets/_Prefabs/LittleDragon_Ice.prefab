@@ -54,7 +54,7 @@ MonoBehaviour:
   player: {fileID: 0}
   bulletPrefab: {fileID: 6804668620800498221, guid: a67cc41c41ff1cf4a91b1d69da384846, type: 3}
   firePoint: {fileID: 1838530930156822346}
-  fireRate: 0.4
+  fireRate: 0.25
   animator: {fileID: 6334342407210421803}
   flyIdleStateName: Fly Float
   flyMoveStateName: Fly Forward

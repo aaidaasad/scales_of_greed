@@ -35,11 +35,15 @@ public class EnemyWaveSpawner : MonoBehaviour
     public int CurrentWaveIndex { get; private set; } = -1;
     public bool IsSpawning { get; private set; }
 
-    public int WavesCleared { get; private set; }  // 已经打完的波数
-    public Action<int> OnWavesClearedChanged;      // UI 回调
+    public int WavesCleared { get; private set; }  // 已经真正“清完”的波数
+    public Action<int> OnWavesClearedChanged;
 
     [Header("Loop Settings")]
     public bool loopLastWave = true;   // 无限循环最后一波
+
+    // 🔴 新增：当前场上活着的敌人数
+    public int AliveEnemies { get; private set; }
+    public Action<int> OnAliveEnemiesChanged;
 
     void Start()
     {
@@ -57,9 +61,21 @@ public class EnemyWaveSpawner : MonoBehaviour
         }
     }
 
+    // 🔴 由 EnemyDeathReporter 调用
+    public void NotifyEnemyDestroyed()
+    {
+        if (AliveEnemies > 0)
+        {
+            AliveEnemies--;
+            OnAliveEnemiesChanged?.Invoke(AliveEnemies);
+        }
+    }
+
     IEnumerator SpawnAllWaves()
     {
         IsSpawning = true;
+        AliveEnemies = 0;
+        OnAliveEnemiesChanged?.Invoke(AliveEnemies);
 
         if (firstWaveDelay > 0f)
             yield return new WaitForSeconds(firstWaveDelay);
@@ -90,14 +106,25 @@ public class EnemyWaveSpawner : MonoBehaviour
             }
 
             if (wave != null)
+            {
+                // 保险：上一波如果还有怪没死，等它们先清完
+                if (AliveEnemies > 0)
+                    yield return new WaitUntil(() => AliveEnemies == 0);
+
+                // 生成这一波所有敌人
                 yield return StartCoroutine(SpawnWave(wave));
 
-            // 🟢 完整一波结束 → 波数+1（无限循环也会增加）
-            WavesCleared++;
-            OnWavesClearedChanged?.Invoke(WavesCleared);
+                // ✅ 关键：等这一波所有敌人都“清掉”再算这一波完成
+                if (AliveEnemies > 0)
+                    yield return new WaitUntil(() => AliveEnemies == 0);
 
-            if (wave != null && wave.timeBeforeNextWave > 0f)
-                yield return new WaitForSeconds(wave.timeBeforeNextWave);
+                WavesCleared++;
+                OnWavesClearedChanged?.Invoke(WavesCleared);
+
+                // 这一波清完后，再等 timeBeforeNextWave 进入下一波
+                if (wave.timeBeforeNextWave > 0f)
+                    yield return new WaitForSeconds(wave.timeBeforeNextWave);
+            }
 
             i++;
         }
@@ -132,6 +159,13 @@ public class EnemyWaveSpawner : MonoBehaviour
     {
         Transform spawn = group.spawnPoint != null ? group.spawnPoint : transform;
         GameObject enemy = Instantiate(group.enemyPrefab, spawn.position, spawn.rotation);
+
+        // 🔴 新增：计数 + 挂上 Reporter
+        AliveEnemies++;
+        OnAliveEnemiesChanged?.Invoke(AliveEnemies);
+
+        EnemyDeathReporter reporter = enemy.AddComponent<EnemyDeathReporter>();
+        reporter.Init(this);
 
         EnemyHealth health = enemy.GetComponent<EnemyHealth>();
         EnemyMover mover = enemy.GetComponent<EnemyMover>();

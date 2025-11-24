@@ -22,6 +22,15 @@ public class TowerConstruction : MonoBehaviour
     public float textSize = 1.2f;
     public float textOffsetY = 2f;
 
+    [Header("VFX")]
+    public GameObject startBuildVfxPrefab;
+    public Transform startVfxPoint;
+    public float startVfxLifeTime = 2f;
+
+    public GameObject finishBuildVfxPrefab;
+    public Transform finishVfxPoint;
+    public float finishVfxLifeTime = 2f;
+
     public bool IsBuilt => isBuilt;
 
     void Awake()
@@ -44,12 +53,13 @@ public class TowerConstruction : MonoBehaviour
 
     void Start()
     {
-        // ⭐ 建造开始 — 弹字
         if (FloatingTextManager.Instance != null && !string.IsNullOrEmpty(startText))
         {
             Vector3 pos = transform.position + Vector3.up * textOffsetY;
             FloatingTextManager.Instance.ShowText(startText, pos, startColor, textSize);
         }
+
+        SpawnVfx(startBuildVfxPrefab, startVfxPoint, startVfxLifeTime);
 
         StartCoroutine(BuildRoutine());
     }
@@ -76,12 +86,13 @@ public class TowerConstruction : MonoBehaviour
             yield return null;
         }
 
-        // ⭐ 建造完成 — 弹字
         if (FloatingTextManager.Instance != null && !string.IsNullOrEmpty(finishText))
         {
             Vector3 pos = transform.position + Vector3.up * textOffsetY;
             FloatingTextManager.Instance.ShowText(finishText, pos, finishColor, textSize);
         }
+
+        SpawnVfx(finishBuildVfxPrefab, finishVfxPoint, finishVfxLifeTime);
 
         if (tower != null) tower.enabled = true;
 
@@ -95,4 +106,16 @@ public class TowerConstruction : MonoBehaviour
 
         isBuilt = true;
     }
+
+    void SpawnVfx(GameObject prefab, Transform point, float lifeTime)
+    {
+        if (prefab == null) return;
+
+        Transform p = point != null ? point : transform;
+        GameObject vfx = Instantiate(prefab, p.position, p.rotation);
+
+        if (lifeTime > 0f)
+            Destroy(vfx, lifeTime);
+    }
 }
+

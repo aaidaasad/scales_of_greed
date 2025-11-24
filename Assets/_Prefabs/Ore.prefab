@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7371836172611683469
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8233816282746651778}
+    m_Modifications:
+    - target: {fileID: 4603279050892974748, guid: d297d0403aea8994b814420a2dc72031, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.7484105
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603279050892974748, guid: d297d0403aea8994b814420a2dc72031, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.45350155
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603279050892974748, guid: d297d0403aea8994b814420a2dc72031, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603279050892974748, guid: d297d0403aea8994b814420a2dc72031, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603279050892974748, guid: d297d0403aea8994b814420a2dc72031, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603279050892974748, guid: d297d0403aea8994b814420a2dc72031, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603279050892974748, guid: d297d0403aea8994b814420a2dc72031, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603279050892974748, guid: d297d0403aea8994b814420a2dc72031, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603279050892974748, guid: d297d0403aea8994b814420a2dc72031, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603279050892974748, guid: d297d0403aea8994b814420a2dc72031, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781300819161021566, guid: d297d0403aea8994b814420a2dc72031, type: 3}
+      propertyPath: m_Name
+      value: Spakle_VFX
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d297d0403aea8994b814420a2dc72031, type: 3}
+--- !u!4 &6461579253763546641 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4603279050892974748, guid: d297d0403aea8994b814420a2dc72031, type: 3}
+  m_PrefabInstance: {fileID: 7371836172611683469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8488965570166547305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78,7 +140,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a39c0254446f2d74da77b072994b8e13, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6461579253763546641}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a39c0254446f2d74da77b072994b8e13, type: 3}
       insertIndex: -1
@@ -86,6 +151,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a39c0254446f2d74da77b072994b8e13, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1008690661125766922}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a39c0254446f2d74da77b072994b8e13, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3280281978518850171}
   m_SourcePrefab: {fileID: 100100000, guid: a39c0254446f2d74da77b072994b8e13, type: 3}
 --- !u!4 &8233816282746651778 stripped
 Transform:
@@ -143,3 +211,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.9731839, y: 3.6344905, z: 3.2036393}
   m_Center: {x: 0.45697668, y: 1.2316473, z: 0.24664332}
+--- !u!114 &3280281978518850171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8723389895864835640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7425d7a0a439b60459839a991fd6fe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverInfo
+  displayName: Ore
+  description: Mine to get gems.

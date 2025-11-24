@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 1776355634056081884}
   - component: {fileID: 4267051480772633569}
   - component: {fileID: 5718137885043019341}
+  - component: {fileID: 8033159311903313720}
   m_Layer: 0
   m_Name: Tower_lv2
   m_TagString: Untagged
@@ -162,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3c1d573789881438f3bd6dc27bfd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerConstruction
-  buildTime: 3
+  buildTime: 5
   progressFill: {fileID: 4299133635005978792}
   progressBarRoot: {fileID: 2519903199744210920}
   builtModel: {fileID: 837968011775977052}
@@ -173,6 +174,12 @@ MonoBehaviour:
   finishColor: {r: 0, g: 1, b: 0, a: 1}
   textSize: 1.2
   textOffsetY: 2
+  startBuildVfxPrefab: {fileID: 6813416509558619124, guid: 3b7f2c753d435d647a80f1f047a113e3, type: 3}
+  startVfxPoint: {fileID: 0}
+  startVfxLifeTime: 2
+  finishBuildVfxPrefab: {fileID: 0}
+  finishVfxPoint: {fileID: 0}
+  finishVfxLifeTime: 2
 --- !u!114 &1776355634056081884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,14 +225,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8deebf2b59d1c4681c3754909b4c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MultiTargetTower
-  range: 12
-  fireRate: 2
+  range: 10
+  fireRate: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
   bulletPrefab: {fileID: 4877413053996390652, guid: 7df2f91bb0938914a9fd03cc7d1e3972, type: 3}
   firePoint: {fileID: 3802934790052860659}
   targetsPerShot: 2
+--- !u!114 &8033159311903313720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862629094743664522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7425d7a0a439b60459839a991fd6fe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverInfo
+  displayName: Aroror Tower
+  description: 'Lv.2 '
 --- !u!1 &4677383250546112461
 GameObject:
   m_ObjectHideFlags: 0
