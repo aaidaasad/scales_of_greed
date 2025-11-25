@@ -146,6 +146,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1552521757547603519}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1942035848891135473}
   m_SourcePrefab: {fileID: 100100000, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}
 --- !u!1 &4803089658306490714 stripped
 GameObject:
@@ -234,6 +237,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HoverInfo
   displayName: Chest
   description: Open me!
+--- !u!114 &1942035848891135473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4803089658306490714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d30cc863dde3c4f8a07841d6df2b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Highlightable
+  outlineMaterial: {fileID: 2100000, guid: 2f4a0c954c0864e479aaadcf09e326a3, type: 2}
 --- !u!4 &5324328107061390304 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4ef0aff086386ca45802f402a18c76ef, type: 3}

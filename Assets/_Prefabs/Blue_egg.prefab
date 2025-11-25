@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1043964493136360969}
   - component: {fileID: 1399074512618135434}
   - component: {fileID: 2539084005789645347}
+  - component: {fileID: 3270551498124595381}
   m_Layer: 7
   m_Name: Blue_egg
   m_TagString: Untagged
@@ -169,6 +170,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Egg
   overrideDragonPrefab: {fileID: 533821572245040371, guid: ace6e81a6f036b840baf48ee6ae085d6, type: 3}
+--- !u!114 &3270551498124595381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3031430151092497830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d30cc863dde3c4f8a07841d6df2b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Highlightable
+  outlineMaterial: {fileID: 2100000, guid: 2f4a0c954c0864e479aaadcf09e326a3, type: 2}
 --- !u!1001 &3034586206982524502
 PrefabInstance:
   m_ObjectHideFlags: 0

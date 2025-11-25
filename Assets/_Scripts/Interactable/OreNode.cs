@@ -51,8 +51,29 @@ public class OreNode : MonoBehaviour
 
                 for (int j = 0; j < mats.Length; j++)
                 {
-                    originalColors[i][j] = mats[j].color;
+                    Material m = mats[j];
+                    if (m == null)
+                    {
+                        originalColors[i][j] = Color.white;
+                        continue;
+                    }
+
+                    // 优先用 _Color，如果没有就用 _TintColor，再不行就给个默认值
+                    if (m.HasProperty("_Color"))
+                    {
+                        originalColors[i][j] = m.GetColor("_Color");
+                    }
+                    else if (m.HasProperty("_TintColor"))
+                    {
+                        originalColors[i][j] = m.GetColor("_TintColor");
+                    }
+                    else
+                    {
+                        // 这个材质不支持颜色，随便存个白色占位
+                        originalColors[i][j] = Color.white;
+                    }
                 }
+
             }
         }
         else
@@ -204,7 +225,19 @@ public class OreNode : MonoBehaviour
             Material[] mats = r.materials;
             for (int j = 0; j < mats.Length; j++)
             {
-                mats[j].color = Color.red;
+                Material m = mats[j];
+                if (m == null) continue;
+
+                // 检查并使用正确属性
+                if (m.HasProperty("_Color"))
+                {
+                    m.SetColor("_Color", Color.red);
+                }
+                else if (m.HasProperty("_TintColor"))
+                {
+                    m.SetColor("_TintColor", Color.red);
+                }
+                // 否则跳过（粒子着色器不支持颜色）
             }
         }
     }
@@ -219,12 +252,23 @@ public class OreNode : MonoBehaviour
             if (r == null) continue;
 
             Material[] mats = r.materials;
-            Color[] colors = originalColors[i];
+            Color[] cols = originalColors[i];
 
-            for (int j = 0; j < mats.Length && j < colors.Length; j++)
+            for (int j = 0; j < mats.Length && j < cols.Length; j++)
             {
-                mats[j].color = colors[j];
+                Material m = mats[j];
+                if (m == null) continue;
+
+                if (m.HasProperty("_Color"))
+                {
+                    m.SetColor("_Color", cols[j]);
+                }
+                else if (m.HasProperty("_TintColor"))
+                {
+                    m.SetColor("_TintColor", cols[j]);
+                }
             }
         }
     }
+
 }

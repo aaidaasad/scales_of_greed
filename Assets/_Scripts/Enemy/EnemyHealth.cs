@@ -34,6 +34,9 @@ public class EnemyHealth : MonoBehaviour
     public float dragonEggDropRadius = 1.0f;
     public float dragonEggPopDuration = 0.35f;
     public float dragonEggPopHeight = 1.0f;
+    [Header("Dragon Egg VFX")]
+    public GameObject dragonEggSpawnVfx;
+
 
     void Awake()
     {
@@ -121,8 +124,17 @@ public class EnemyHealth : MonoBehaviour
         );
 
         GameObject eggObj = Instantiate(dragonEggPrefab, start, Quaternion.identity);
+
+        // ⭐⭐⭐ 龙蛋生成特效（新加）
+        if (dragonEggSpawnVfx != null)
+        {
+            GameObject vfx = Instantiate(dragonEggSpawnVfx, start, Quaternion.identity);
+            Destroy(vfx, 2f); // 你可以调节持续时间
+        }
+
         StartCoroutine(PopObject(eggObj.transform, start, end, dragonEggPopDuration, dragonEggPopHeight));
     }
+
 
     IEnumerator PopObject(Transform obj, Vector3 start, Vector3 end, float duration, float height)
     {

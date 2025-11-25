@@ -539,23 +539,52 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    Highlightable lastHighlight;
+
     void UpdateForwardCheck()
     {
         if (controller == null) return;
 
         Vector3 origin = controller.bounds.center;
 
-        if (Physics.Raycast(origin, transform.forward, out RaycastHit hit, forwardCheckDistance, forwardCheckLayerMask))
-            forwardTarget = hit.collider.gameObject;
-        else
-            forwardTarget = null;
+        GameObject newTarget = null;
 
-        Debug.DrawRay(origin, transform.forward * forwardCheckDistance, forwardTarget ? Color.green : Color.red);
+        if (Physics.Raycast(origin, transform.forward, out RaycastHit hit, forwardCheckDistance, forwardCheckLayerMask))
+            newTarget = hit.collider.gameObject;
+
+        // ====== 👇 这里是新增的高光逻辑，不会影响你的 forwardTarget ======
+        if (lastHighlight != null && (newTarget == null || lastHighlight.gameObject != newTarget))
+        {
+            lastHighlight.SetHighlight(false);
+            lastHighlight = null;
+        }
+
+        if (newTarget != null)
+        {
+            Highlightable h = newTarget.GetComponent<Highlightable>();
+            if (h != null)
+            {
+                lastHighlight = h;
+                lastHighlight.SetHighlight(true);
+            }
+        }
+        // ==========================================================
+
+        // 原功能保持不变
+        forwardTarget = newTarget;
+
+        Debug.DrawRay(origin, transform.forward * forwardCheckDistance,
+            forwardTarget ? Color.green : Color.red);
     }
+
 
     void OnMove(InputValue value)
     {
         Vector2 input = value.Get<Vector2>();
         moveInput = new Vector3(input.x, 0f, input.y);
     }
+
+
+
 }
+

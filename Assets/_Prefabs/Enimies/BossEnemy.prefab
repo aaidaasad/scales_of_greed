@@ -142,6 +142,7 @@ MonoBehaviour:
   dragonEggDropRadius: 4
   dragonEggPopDuration: 0.35
   dragonEggPopHeight: 2
+  dragonEggSpawnVfx: {fileID: 6813416509558619124, guid: 3b7f2c753d435d647a80f1f047a113e3, type: 3}
 --- !u!114 &3315901409818035697
 MonoBehaviour:
   m_ObjectHideFlags: 0

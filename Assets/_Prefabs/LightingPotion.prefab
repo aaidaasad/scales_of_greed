@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 245661100987489514}
   - component: {fileID: 7710880271094169574}
   - component: {fileID: 1905288179990535763}
+  - component: {fileID: 4879902554958587952}
   m_Layer: 7
   m_Name: LightingPotion
   m_TagString: Untagged
@@ -140,6 +141,19 @@ MonoBehaviour:
   useTiltAngle: 40
   useShakeAmplitude: 3
   useShakeFrequency: 20
+--- !u!114 &4879902554958587952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364825690925916959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d30cc863dde3c4f8a07841d6df2b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Highlightable
+  outlineMaterial: {fileID: 2100000, guid: 2f4a0c954c0864e479aaadcf09e326a3, type: 2}
 --- !u!1 &7860147601442705693
 GameObject:
   m_ObjectHideFlags: 0

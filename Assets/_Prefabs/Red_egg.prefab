@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2009226389534792132}
   - component: {fileID: 8199741180696123329}
   - component: {fileID: 8054322402114147912}
+  - component: {fileID: 3464537190074782119}
   m_Layer: 7
   m_Name: Red_egg
   m_TagString: Untagged
@@ -169,6 +170,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Egg
   overrideDragonPrefab: {fileID: 0}
+--- !u!114 &3464537190074782119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5815221422166073221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d30cc863dde3c4f8a07841d6df2b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Highlightable
+  outlineMaterial: {fileID: 2100000, guid: 2f4a0c954c0864e479aaadcf09e326a3, type: 2}
 --- !u!1001 &5405188783127063879
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -154,6 +154,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a39c0254446f2d74da77b072994b8e13, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3280281978518850171}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a39c0254446f2d74da77b072994b8e13, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3853805075962508386}
   m_SourcePrefab: {fileID: 100100000, guid: a39c0254446f2d74da77b072994b8e13, type: 3}
 --- !u!4 &8233816282746651778 stripped
 Transform:
@@ -225,3 +228,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HoverInfo
   displayName: Ore
   description: Mine to get gems.
+--- !u!114 &3853805075962508386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8723389895864835640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d30cc863dde3c4f8a07841d6df2b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Highlightable
+  outlineMaterial: {fileID: 2100000, guid: 2f4a0c954c0864e479aaadcf09e326a3, type: 2}
