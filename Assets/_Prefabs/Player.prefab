@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2610480959348049283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1912482421264285469}
+  m_Layer: 0
+  m_Name: SmokePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1912482421264285469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2610480959348049283}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2821293788649014958}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4751752185205531541
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 149564036620331053}
+  m_Layer: 0
+  m_Name: VFXPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &149564036620331053
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4751752185205531541}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2821293788649014958}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4964590919581217101
 GameObject:
   m_ObjectHideFlags: 0
@@ -36,6 +98,8 @@ Transform:
   - {fileID: 4134436885201766328}
   - {fileID: 2320281162138739271}
   - {fileID: 5000048333486138401}
+  - {fileID: 149564036620331053}
+  - {fileID: 1912482421264285469}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &6707856632097387327
@@ -78,13 +142,13 @@ MonoBehaviour:
   moveSpeed: 3
   gravity: -9.81
   miningActiveMoveMultiplier: 0.15
-  miningAfterMoveMultiplier: 0.4
-  miningAfterDuration: 0.8
+  miningAfterMoveMultiplier: 0.5
+  miningAfterDuration: 0.7
   miningActiveAnimMultiplier: 0.15
   miningAfterAnimMultiplier: 0.4
   miningDuration: 0.2
-  carryingMoveMultiplier: 0.5
-  carryingAnimMultiplier: 0.8
+  carryingMoveMultiplier: 0.45
+  carryingAnimMultiplier: 1.4
   carryPoint: {fileID: 2320281162138739271}
   mainCamera: {fileID: 0}
   forwardCheckDistance: 3
@@ -100,15 +164,15 @@ MonoBehaviour:
   buffTriggerParam: Buff
   carryingUpperBoolParam: IsCarryingUpper
   buffAnimDuration: 0.8
-  drinkMoveMultiplier: 0.2
-  buffMoveMultiplier: 0.3
-  drinkVfxPrefab: {fileID: 0}
-  drinkVfxPoint: {fileID: 0}
-  buffVfxPrefab: {fileID: 0}
-  buffVfxPoint: {fileID: 0}
+  drinkMoveMultiplier: 0.5
+  buffMoveMultiplier: 0.5
+  drinkVfxPrefab: {fileID: 5824670795371433373, guid: f6fd568b816c64943a44efc3add3a881, type: 3}
+  drinkVfxPoint: {fileID: 2821293788649014958}
+  buffVfxPrefab: {fileID: 2020661361868494885, guid: 895c6d094b6b213418cddcfb520298e9, type: 3}
+  buffVfxPoint: {fileID: 149564036620331053}
   potionTrail: {fileID: 0}
-  buffSmokePrefab: {fileID: 0}
-  buffSmokePoint: {fileID: 0}
+  buffSmokePrefab: {fileID: 6813416509558619124, guid: 3b7f2c753d435d647a80f1f047a113e3, type: 3}
+  buffSmokePoint: {fileID: 1912482421264285469}
   buffSmokeSpawnInterval: 0.15
   buffSmokeLifetime: 0.8
 --- !u!114 &1821266368717903936
@@ -138,7 +202,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: df70fa95-8a34-4494-b137-73ab6b9c7d37
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!136 &7846268544431251756
@@ -278,7 +342,7 @@ Transform:
   m_GameObject: {fileID: 9053293695523957771}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.83, z: 1.49}
+  m_LocalPosition: {x: 0, y: 1.2, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

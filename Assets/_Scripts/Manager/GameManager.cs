@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -53,10 +54,20 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    void Update()
+    {
+        if (Keyboard.current != null && Keyboard.current.tKey.wasPressedThisFrame)
+        {
+            Debug.Log("当前 Time.timeScale = " + Time.timeScale);
+            Time.timeScale = 1f;
+        }
+    }
+
+
     void Start()
     {
         // 1. 先暂停游戏
-        Time.timeScale = 0f;
+       // Time.timeScale = 0f;//
 
         // 2. 显示开场说明面板
         if (startPanel != null)
@@ -84,6 +95,7 @@ public class GameManager : MonoBehaviour
         if (winPanel != null)
             winPanel.SetActive(false);
     }
+  
 
     void OnDestroy()
     {
@@ -212,15 +224,18 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        Debug.Log("StartGame 被调用了！调用前 timeScale = " + Time.timeScale);
+
         if (startPanel != null)
             startPanel.SetActive(false);
 
         Time.timeScale = 1f;
 
-        // 如果你是依靠 waveSpawner 自动开局，这里不必管
-        // 如果你要求玩家按开始后再刷怪，则可以这样：
+        Debug.Log("StartGame 结束，timeScale = " + Time.timeScale);
+
         if (waveSpawner != null && !waveSpawner.IsSpawning)
             waveSpawner.StartWaves();
     }
+
 
 }

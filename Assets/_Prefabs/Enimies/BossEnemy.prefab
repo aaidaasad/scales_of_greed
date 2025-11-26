@@ -125,17 +125,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 600
+  enableDamageText: 1
+  damageTextColor: {r: 1, g: 0, b: 0, a: 1}
+  damageTextSize: 1
+  damageTextHeight: 2
+  damageTextRandomRadius: 0.3
   gemPickupPrefab: {fileID: 3882592113134998967, guid: ecb8c46429549ea4dae81511369025de, type: 3}
   gemDropChance: 1
   minGemAmount: 20
   maxGemAmount: 25
   gemDropRadius: 1
+  gemPopDuration: 0.35
+  gemPopHeight: 1
   dragonEggPrefab: {fileID: 5815221422166073221, guid: a72d76a4be11249498d2e05fb1989786, type: 3}
   dragonEggDropChance: 1
   dragonEggDropRadius: 2
   dragonEggPopDuration: 0.35
   dragonEggPopHeight: 2
-  dragonEggSpawnPoint: {fileID: 0}
+  dragonEggSpawnVfx: {fileID: 0}
 --- !u!114 &3315901409818035697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,19 +205,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.39012
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.39012
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.39012
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.47827
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -218,7 +225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.06612
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -247,6 +254,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 79b50b34e44b5fd4db1cdc9535a3c86b, type: 3}
       propertyPath: m_Controller
