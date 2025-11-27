@@ -991,7 +991,7 @@ MonoBehaviour:
   m_text: "Free Stylized Smoke Effects Pack (v1.0)\nFree Sample Animation Set (v1.0)\nLow
     Polygon Potions Pack (v1.0)\nLow Poly Bird: Nests (v1.0)\nCartoon FX Remaster
     Free (v1.5.0)\nFREE \u2013 32 RPG Animations (v1.1)\nDEMO Low Poly Mines (v1.0)\nLowpoly
-    Magician RIO (v1.0)"
+    Magician RIO (v1.0)\nhttps://pixabay.com/music/main-title-to-adventure-193760/\nhttps://pixabay.com/sound-effects/dragon-flapping-wings-364476/\nhttps://pixabay.com/sound-effects/dragon-roar-high-intensity-36564/\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1018,8 +1018,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21
-  m_fontSizeBase: 21
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2868,8 +2868,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21
-  m_fontSizeBase: 21
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
